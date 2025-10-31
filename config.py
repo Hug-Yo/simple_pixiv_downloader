@@ -6,7 +6,7 @@ start_date = (datetime.date.today() - timedelta(days=1)).strftime('%Y%m%d')
 #mode_config
 #--------------------------------
 start_date = start_date
-mode = 'daily_r18'  #可选值[diary,weekly,monthly,rookie,original,male,female,daily_r18,weekly_r18,male_r18,female_r18,r18]
+mode = 'daily'  #可选值[diary,weekly,monthly,rookie,original,male,female,daily_r18,weekly_r18,male_r18,female_r18,r18,r18g]
 content = 'illust' #可选值[illust,ugoira,manga]
 n_artwork = 10 #返回作品数量,设置为0代表默认前50张
 if_return_all = False #是否输出所有抓取到的画作信息（不建议开启）
@@ -18,7 +18,7 @@ if_return_all = False #是否输出所有抓取到的画作信息（不建议开
 #若需要下载r18类作品请用浏览器登陆自己的pixiv账号，抓取cookie
 cookies = ''
 
-#user_agent一般情况下无需更改
+#下面两项一般情况下无需更改
 user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 Edg/141.0.0.0'
 headers = {"User-Agent": user_agent,
            "cookie": cookies,

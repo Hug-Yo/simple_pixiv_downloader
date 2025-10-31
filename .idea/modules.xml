@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../Project/HMO_web/.idea/HMO_web.iml" filepath="$PROJECT_DIR$/../Project/HMO_web/.idea/HMO_web.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../PythonProject/.idea/PythonProject.iml" filepath="$PROJECT_DIR$/../PythonProject/.idea/PythonProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/simple_pixiv_downloader.iml" filepath="$PROJECT_DIR$/.idea/simple_pixiv_downloader.iml" />
     </modules>
   </component>

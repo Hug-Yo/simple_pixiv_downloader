@@ -5,8 +5,8 @@ start_date = (datetime.date.today() - timedelta(days=1)).strftime('%Y%m%d')
 
 #mode_config
 #--------------------------------
-start_date = start_date
-mode = 'daily'  #可选值[diary,weekly,monthly,rookie,original,male,female,daily_r18,weekly_r18,male_r18,female_r18,r18,r18g]
+start_date = start_date  #日期格式为YYMMDD,默认为最新排行榜
+mode = 'weekly_r18'  #可选值[diary,weekly,monthly,rookie,original,male,female,daily_r18,weekly_r18,male_r18,female_r18,r18,r18g]
 content = 'illust' #可选值[illust,ugoira,manga]
 n_artwork = 10 #返回作品数量,设置为0代表默认前50张
 if_return_all = False #是否输出所有抓取到的画作信息（不建议开启）

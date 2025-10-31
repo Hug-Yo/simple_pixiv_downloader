@@ -1,6 +1,14 @@
+from gettext import install
+
 # simple_pixiv_downloader
 ## 简介
 这是本人初学python的简易项目，仅供练习使用
+依赖安装：
+```
+pip install os
+pip install requests
+pip install json
+```
 ## config  设置
 ```python
 mode = 'daily_r18'

@@ -9,7 +9,7 @@ n_artwork = 10
 if_return_all = False
 ```
 ### 说明：
-`mode`可选值有[diary,weekly,monthly,rookie,original,male,female,daily_r18,weekly_r18,male_r18,female_r18,r18]
+`mode`可选值有[diary,weekly,monthly,rookie,original,male,female,daily_r18,weekly_r18,male_r18,female_r18,r18,r18g]
 
 `content`可选值[illust,ugoira,manga]
 

@@ -20,7 +20,7 @@ if_return_all = False
 ### 说明：
 `start_time`日期格式为YYMMDD,默认为最新排行榜
 
-`mode`可选值有[daily,weekly,monthly,rookie,original,male,female,daily_r18,weekly_r18,male_r18,female_r18,r18,r18g]
+`mode`可选值有[daily,weekly,monthly,rookie,original,male,female,daily_r18,weekly_r18,male_r18,female_r18,r18g]
 
 `content`可选值[illust,ugoira,manga]
 

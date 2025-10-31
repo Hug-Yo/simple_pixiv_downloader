@@ -31,6 +31,7 @@ def get_artworks_url():
                 req = requests.get(url[0],headers=headers)
             result = json.loads(req.text)  #得到字典类型result
             try:
+                #解包result，提取关键信息并创建Artwork对象
                 for __ in range (len(result['contents'])):
                     title = result['contents'][__]['title']
                     tags = result['contents'][__]['tags']
@@ -52,11 +53,13 @@ def get_artworks_url():
 
 #进行画作筛选以及下载数量限制
 def download_artwork(n_artwork,art_work_list):
+    #检测目录是否已存在，若否，则创建目录
     if not os.path.exists(f'./pixiv_images/{start_date}/{mode}'):
         os.makedirs(f'./pixiv_images/{start_date}/{mode}')
         print("目录创建成功")
     else:
         print("目录已存在")
+    #根据n_artwork和if_return_all的值来确定下载排行榜前多少张的图片,若if_return_all==ture则忽略n_artwork，下载所有图片
     if n_artwork != 0 and if_return_all == False:
         for _ in range (n_artwork):
             req = requests.get(art_work_list[_].url,headers=headers)

@@ -30,4 +30,6 @@ headers =''
 
 user_agent和header一般情况下无需改动
 
+下载地址为当前目录下创建的`/pixiv_image/{date}`
+
 >关于pixiv画作参数详情:https://natescarlet.github.io/pixiv/artwork_rank.html

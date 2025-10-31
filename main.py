@@ -1,7 +1,3 @@
-# 这是一个示例 Python 脚本。
-
-# 按 Shift+F10 执行或将其替换为您的代码。
-# 按 双击 Shift 在所有地方搜索类、文件、工具窗口、操作和设置。
 from config import mode,content,n_artwork,if_return_all
 import time
 import get_artworks_url
@@ -18,12 +14,9 @@ if __name__ == '__main__':
     ''')
     print("5s后开始下载...")
     time.sleep(5)
-    print("开始下载...")
+    print("正在获取url...")
     art_work_url = get_artworks_url.get_artworks_url()
     print("url获取成功")
+    print("开始下载...")
     get_artworks_url.download_artwork(n_artwork,art_work_url)
-    print("下载结束..")
-
-
-
-# 访问 https://www.jetbrains.com/help/pycharm/ 获取 PyCharm 帮助
+    print("下载结束...")

@@ -39,6 +39,8 @@ headers =''
 ### 说明：
 若cookie留空，则mode不可选择[daily_r18,weekly_r18,male_r18,female_r18,r18]
 
+cookie具有时效性，如下载失败请尝试更新cookie
+
 user_agent和header一般情况下无需改动
 
 下载地址为当前目录下创建的`/pixiv_image/{date}`

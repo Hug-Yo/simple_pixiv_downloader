@@ -28,12 +28,7 @@ mode = 'daily'  #可选值[daily,weekly,monthly,rookie,original,male,female,dail
 content = 'illust' #可选值[illust,ugoira,manga]
 n_artwork = 10 #返回作品数量,设置为0代表默认前50张
 if_return_all = True #是否输出所有抓取到的画作信息（不建议开启）
-
-##################################
-
-#users_mode_config
-
-
+#--------------------------------
 
 
 

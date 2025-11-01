@@ -33,8 +33,8 @@ if_return_all = True #是否输出所有抓取到的画作信息（不建议开�
 #tag搜索模式设置
 #--------------------------------
 s_order = 'date_d'
-s_age_mode = 'r18'
-page_limit = 10
+s_age_mode = 'safe'
+page_limit = 15
 s_type = 'illust_and_ugoira'
 s_date = '1900-01-01'
 s_tags = '血小板'

@@ -43,7 +43,7 @@ s_tags = 'miku'
 #user_config
 #--------------------------------
 #若需要下载r18类作品请用浏览器登陆自己的pixiv账号，抓取cookie
-cookies = 'first_visit_datetime_pc=2025-10-19%2013%3A14%3A25; p_ab_id=2; p_ab_id_2=9; p_ab_d_id=2012437270; yuid_b=M5czgFU; _ga=GA1.1.1835298157.1760847268; device_token=96aaf53df213c1125cfb3c2db4e9c76f; privacy_policy_agreement=7; c_type=51; privacy_policy_notification=0; a_type=1; b_type=1; _gcl_au=1.1.1989850141.1760847526; login_ever=yes; PHPSESSID=44858349_ydu5aVmq9oT3dEgXQ32hhyu7vI43K0t5; _ga_MZ1NL4PHH0=GS2.1.s1761313124$o3$g1$t1761313137$j47$l0$h0; _im_vid=01K8WM5RZPMMHQBPGDKNNQRE5Z; __bnc_pfpuid__=16vr-l3TV1BnjMX; _cfuvid=VHNrxzya050L9nG_C5rweSeza.iYEhibmcV8K2bY3vQ-1761907803442-0.0.1.1-604800000; __cf_bm=YxIMxumgePn_a9rwD7NjucdIkNExJk3PcxFvbXloGYI-1761919390-1.0.1.1-At.M69jpuZ2pziNi3NIToHOW6B_4K2t5q0rAdBLOL8Ej537jx6CciPhM8izdiLuKGTznz6p53sea98lpkACHnpMIm63bENyzLYYIMPxcGM.OVJ2dQuEqEOPcekMViVzm; _ga_75BBYNYN9J=GS2.1.s1761919746$o11$g0$t1761919746$j60$l0$h0; cf_clearance=U6i8g0lTwNUhpRGTPmjqCQjggGBlM08dkX4hIepJHIg-1761919744-1.2.1.1-az4Q5P9kcQfoXgL.UU1n9aP88pxE3OVvFKQj_aGi9yG6u0Ef18oqUz_1zmGg4s7pds_u9dpbCfnE13v5xRds.hU3GyogpJQXKEzO2Abuz1XrGbiho9tnWy2tPnVW8w2AtYeq4Q_lAnpWfu1ZjSi6Veejf.9VOWEE5gCbDx70qDcb32Jf45aS5q.H9GKcw4kcmekfXk1Zbp5YrbOf1jGBHFDA7iGrxRG9gSyEvesj2wg'
+cookies = ''
 #--------------------------------
 
 

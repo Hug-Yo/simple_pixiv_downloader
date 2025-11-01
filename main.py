@@ -1,8 +1,6 @@
 from config import *
-import time
 import get_artworks_url
 import downloader
-from get_artworks_url import get_search_artworks_url
 
 # 按装订区域中的绿色按钮以运行脚本。
 if __name__ == '__main__':

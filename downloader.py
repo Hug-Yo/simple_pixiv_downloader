@@ -19,14 +19,18 @@ def download_ranking_artwork(n_artwork,art_work_list):
     elif if_return_all:
         extent = len(art_work_list)
     for _ in range (extent):
-        for __ in range (len(art_work_list[_].url)):
+        print(art_work_list[_].url)
+        i = 1
+        for url in art_work_list[_].url:
             try:
-                req = requests.get(art_work_list[_].url[__],headers=headers)
-                with open(f'./pixiv_images/{start_date}/{mode}/{art_work_list[_].pid}{mode}--page:{__}.png','wb') as f:
+                req = requests.get(url,headers=headers)
+                with open(f'./pixiv_images/{start_date}/{mode}/{art_work_list[_].pid}{mode}--page{i}.png','wb') as f:
                     f.write(req.content)
-            except:
-                print(f'下载完成')
-            print(f'下载完成')
+                i = i + 1
+                print(f'本张写入完成')
+            except Exception as e:
+                print(e)
+    print(f'下载完成')
 
 #某画师作品下载
 def download_users_artworks():

@@ -1,8 +1,7 @@
 import requests
 import json
 from config import *
-# import downloader
-# from downloader import multi_pages_download
+import time
 import re
 
 
@@ -36,6 +35,17 @@ class Artwork:
                     break
 
 
+#获取排行榜作品的基础信息
+def get_ranking_artworks_info(item):
+    #遍历result，result是字典类型，通过此方法获取所需的化作信息
+    pid = item['illust_id']
+    title = item['title']
+    tags = item['tags']
+    url = re.sub(r'/c/\d+x\d+/', '/', item['url'])
+    illust_type = item['illust_type']
+    user_id = item['user_id']
+    pages = item['illust_page_count']
+    return title,tags,url,illust_type,user_id,pid,pages
 
 
 
@@ -60,6 +70,7 @@ def get_artworks_info(item):
 
 #获取作品的热度信息
 def get_artworks_pop_info(item):
+    time.sleep(1)
     #获取pid，为获取pop_info做准备
     pid = item['id']
     #这是作品详情页的数据，返回json包
@@ -94,21 +105,19 @@ def get_ranking_artworks_url():
             result = json.loads(req.text)  #得到字典类型result
             try:
                 #遍历result字典，调用函数解包result，提取关键信息并创建Artwork对象
-                for item in result['body']['illust']['data']:
+                for item in result['contents']:
                     #调用函数获取item（某一作品）的info，并赋值给art_work_info,此函数的返回值为一系列如title，pid登信息
-                    art_work_info = get_artworks_info(item)
+                    art_work_info = get_ranking_artworks_info(item)
                     #初始化 热度 信息，若未开启排行模式则跳过获取热度信息这一步
                     artwork_pop_info = (0,0,0)
-                    if ranking_mode:
-                        #调用函数获取item（某一作品）的pop_info，如like_count,view_count,bookmark_count,反映作品的热度
-                        artwork_pop_info = get_artworks_pop_info(item)
                     #将info，pop_info解包传入自定义类，并将自定义类放进art_work_list
                     art_work_list.append(Artwork(*art_work_info,*artwork_pop_info))
-
                 print(f'第{_}页获取成功')
-            except:
+            except BaseException as e:
+                print(e)
                 print(f'第{_}页获取失败，可能资源并不存在，已跳过')
         except Exception as e:
+            print(e)
             break
     return art_work_list
 
@@ -155,7 +164,8 @@ def get_search_artworks_url():
                 print(f'第{page}页获取失败，结束获取')
                 break
             page += 1
-        except:
+        except BaseException as e:
+            print(e)
             break
     return search_artwork_list
 

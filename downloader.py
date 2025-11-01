@@ -34,13 +34,16 @@ def download_users_artworks():
 
 
 #下载某搜索结果的内容
-def download_search_artworks(search_artwork_list):
+def download_search_artworks(search_artwork_list,num):
     if not os.path.exists(f'pixiv_images/{s_tags}'):
         os.makedirs(f'pixiv_images/{s_tags}')
         print("目录创建成功")
     else:
         print("目录已存在")
-    for item in search_artwork_list:
+    if not ranking_mode:
+        num = len(search_artwork_list)
+    for index in range (num):
+        item = search_artwork_list[index]
         if item.illust_type == '2' or item.illust_type == 2:
             continue
         else:

@@ -36,9 +36,8 @@ s_order = 'date_d'
 s_age_mode = 'safe'
 page_limit = 15
 s_type = 'illust_and_ugoira'
-s_date = '1900-01-01'
-s_tags = '血小板'
-
+s_tags = 'miku'
+#--------------------------------
 
 
 #user_config

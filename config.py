@@ -13,6 +13,22 @@ if_return_all = True #是否输出所有抓取到的画作信息（不建议开�
 
 ##################################
 
+#users_mode_config
+
+
+
+
+
+#search_mode_config
+s_order = 'date_d'
+s_age_mode = 'r18'
+page_limit = 10
+s_type = 'illust_and_ugoira'
+s_date = '1900-01-01'
+s_tags = '血小板'
+
+
+
 #user_config
 #--------------------------------
 #若需要下载r18类作品请用浏览器登陆自己的pixiv账号，抓取cookie

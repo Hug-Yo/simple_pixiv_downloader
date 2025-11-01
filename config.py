@@ -21,9 +21,7 @@ ranking_mode = True  #是否启用排序模式（极慢）
 ranking_mode_download_limit = 20 #如启用ranking_mode，下载排名前20的图片
 #--------------------------------
 
-multi_pages_download = False
-
-#ranking_mode_config
+#排行榜模式设置
 #--------------------------------
 start_date = start_date  #日期格式为YYMMDD,默认为最新排行榜
 mode = 'daily'  #可选值[daily,weekly,monthly,rookie,original,male,female,daily_r18,weekly_r18,male_r18,female_r18,r18g]

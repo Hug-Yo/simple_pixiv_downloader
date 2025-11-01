@@ -1,20 +1,37 @@
 import requests
 import json
-import os
+from config import s_order,s_age_mode,page_limit,s_type,s_date,s_tags
+# import downloader
+# from downloader import multi_pages_download
 import re
 from config import start_date,mode,if_return_all,headers,content
 
 #定义画作的类
 class Artwork:
-    def __init__(self,title,tags,url,illust_type,user_id,pid):
+    def __init__(self,title,tags,url,illust_type,user_id,pid,pages):
         self.title = title
         self.tags = tags
         self.illust_type = illust_type
         self.user_id = user_id
-        self.url = url
+        self.url = []
+        self.url.append(url)
         self.pid = pid
+        self.pages = pages
+    def multi_pages_mode(self):
+        if self.pages == '1':
+            return
+        else:
+            for index in range(1,int(self.pages)):
+                try:
+                    pattern = r'(.*)_p(\d+)_(.*)'
+                    match = re.match(pattern, self.url[0])
+                    prefix, _, suffix = match.groups()
+                    self.url.append(f'{prefix}_p{index}_{suffix}')
+                except:
+                    break
 
-def get_artworks_url():
+#排行榜url抓取
+def get_ranking_artworks_url():
     # 获取pixiv排行榜所有画作信息，最多十页
     art_work_list = []
     for _ in range (1,11):
@@ -38,12 +55,9 @@ def get_artworks_url():
                     url = re.sub(r'/c/\d+x\d+/', '/', result['contents'][__]['url'])
                     illust_type = result['contents'][__]['illust_type']
                     user_id = result['contents'][__]['user_id']
-                    try:
-                        pid = re.findall(r'/(\d+)_p\d', url)[0]
-                    except:
-                        pid = re.findall(r'/(\d+)_', url)[0]
-                    art_work_list.append(Artwork(title, tags, url, illust_type, user_id, pid))
-                    art_work_list.append(Artwork(title,tags,url,illust_type,user_id,pid))
+                    pid = result['contents'][__]['illust_id']
+                    pages = result['contents'][__]['illust_page_count']
+                    art_work_list.append(Artwork(title, tags, url, illust_type, user_id, pid,pages))
                 print(f'第{_}页获取成功')
             except:
                 print(f'第{_}页获取失败，可能资源并不存在，已跳过')
@@ -51,33 +65,79 @@ def get_artworks_url():
             break
     return art_work_list
 
-#进行画作筛选以及下载数量限制
-def download_artwork(n_artwork,art_work_list):
-    #检测目录是否已存在，若否，则创建目录
-    if not os.path.exists(f'./pixiv_images/{start_date}/{mode}'):
-        os.makedirs(f'./pixiv_images/{start_date}/{mode}')
-        print("目录创建成功")
-    else:
-        print("目录已存在")
-    #根据n_artwork和if_return_all的值来确定下载排行榜前多少张的图片,若if_return_all==ture则忽略n_artwork，下载所有图片
-    if n_artwork != 0 and if_return_all == False:
-        for _ in range (n_artwork):
-            req = requests.get(art_work_list[_].url,headers=headers)
-            with open(f'./pixiv_images/{start_date}/{mode}/{art_work_list[_].pid}{mode}.png','wb') as f:
-                f.write(req.content)
-    elif n_artwork == 0 and if_return_all == False:
-        for _ in range (50):
-            req = requests.get(art_work_list[_].url,headers=headers)
-            with open(f'./pixiv_images/{start_date}/{mode}/{art_work_list[_].pid}{mode}.png','wb') as f:
-                f.write(req.content)
-    elif if_return_all:
-        for _ in range (len(art_work_list)):
-            req = requests.get(art_work_list[_].url,headers=headers)
-            with open(f'./pixiv_images/{start_date}/{mode}/{art_work_list[_].pid}{mode}.png','wb') as f:
-                f.write(req.content)
+
+
+
+#抓取某一个作者的全部作品url
+def get_users_artworks_url():
+    art_work_list = []
+    user_id = input("请输入作者pid:")
+    while True:
+        try:
+            url = f'https://www.pixiv.net/en/users/{user_id}/artworks'
+            req = requests.get(url,headers=headers)
+            result = json.loads(req.text)
+        except:
+            pass
+        pass  #作者详情页疑似被加密，暂时无法解决
+
+
+
+
+#抓取某一搜索结果的所有作品url
+def get_search_artworks_url():
+    page = 1
+    search_artwork_list = []
+    while page <= page_limit:
+        try:
+            url = f'https://www.pixiv.net/ajax/search/illustrations/{s_tags}?word={s_tags}&order={s_order}&mode={s_age_mode}&p={page}&csw=0&s_mode=s_tag&type={s_type}&lang=en'
+            res = requests.get(url,headers=headers)
+            result = json.loads(res.text)
+            if False:
+                try:
+                    for item in result['body']['popular']['permanent']:
+                        pid = item['id']
+                        title = item['title']
+                        tags = item['tags']
+                        url = re.sub(r'/c/\d+x\d+_\d+_a\d+/|square1200', lambda m: '/' if 'c/' in m.group(0) else 'master1200', item['url'])
+                        illust_type = item['illustType']
+                        user_id = item['userId']
+                        pages = item['pageCount']
+                        search_artwork_list.append(Artwork(title, tags, url, illust_type, user_id, pid, pages))
+                        print(url)
+                    print(f'第{page}页获取成功')
+                except:
+                    print(f'第{page}页获取失败，结束获取')
+                    break
+            else:
+                try:
+                    for item in result['body']['illust']['data']:
+                        pid = item['id']
+                        title = item['title']
+                        tags = item['tags']
+                        url = re.sub(r'/c/\d+x\d+_\d+_a\d+/|square1200', lambda m: '/' if 'c/' in m.group(0) else 'master1200', item['url'])
+                        illust_type = item['illustType']
+                        user_id = item['userId']
+                        pages = item['pageCount']
+                        search_artwork_list.append(Artwork(title, tags, url, illust_type, user_id, pid, pages))
+                        # print(url)
+                    print(f'第{page}页获取成功')
+                except:
+                    print(f'第{page}页获取失败，结束获取')
+                    break
+            page += 1
+        except:
+            break
+    return search_artwork_list
+
+if __name__ == '__main__':
+    search_artwork_list = get_search_artworks_url()
+
 
 #用于设置断点debug
-if __name__ == '__main__':
-    art_work_list = get_artworks_url()
-    for _ in range (len(art_work_list)):
-        print(art_work_list[_].url)
+# if __name__ == '__main__':
+    # art_work_list = get_ranking_artworks_url()
+    # downloader.multi_pages_download(art_work_list)
+    # for item in art_work_list:
+    #     for _ in range (len(item.url)):
+    #         print(item.url[_])

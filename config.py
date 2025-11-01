@@ -30,9 +30,8 @@ n_artwork = 10 #返回作品数量,设置为0代表默认前50张
 if_return_all = True #是否输出所有抓取到的画作信息（不建议开启）
 #--------------------------------
 
-
-
-#search_mode_config
+#tag搜索模式设置
+#--------------------------------
 s_order = 'date_d'
 s_age_mode = 'r18'
 page_limit = 10

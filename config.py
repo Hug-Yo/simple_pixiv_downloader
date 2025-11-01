@@ -14,6 +14,12 @@ def get_target_date():
 start_date = get_target_date()
 
 
+#基础设置
+#--------------------------------
+multi_pages_download = True  #是否启用多页下载
+ranking_mode = True  #是否启用排序模式（极慢）
+ranking_mode_download_limit = 20 #如启用ranking_mode，下载排名前20的图片
+#--------------------------------
 
 multi_pages_download = False
 

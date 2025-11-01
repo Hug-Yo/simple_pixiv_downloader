@@ -1,7 +1,17 @@
 import datetime
 from datetime import timedelta
 #默认开始时间，不用修改
-start_date = (datetime.date.today() - timedelta(days=2)).strftime('%Y%m%d')
+def get_target_date():
+    now = datetime.datetime.now()
+    # 判断当前时间是否在中午12点之前
+    if now.hour < 12:
+        # 中午12点之前，返回前天日期
+        target_date = now - timedelta(days=2)
+    else:
+        # 中午12点之后，返回昨天日期
+        target_date = now - timedelta(days=1)
+    return target_date.strftime('%Y%m%d')
+start_date = get_target_date()
 
 
 

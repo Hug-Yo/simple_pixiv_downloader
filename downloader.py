@@ -55,7 +55,7 @@ def download_search_artworks(search_artwork_list,num):
                 _ = 0
                 for _ in range (len(item.url)):
                     res = requests.get(item.url[_],headers=headers)
-                    with open(f'pixiv_images/{s_tags}/{item.pid}-page{_+1}.png','wb') as f:
+                    with open(f'pixiv_images/{s_tags}/{item.pid}-page{_+1}（{item.bookmark_count}订阅）.png','wb') as f:
                         f.write(res.content)
                     print('本张写入完成')
             except BaseException as e:

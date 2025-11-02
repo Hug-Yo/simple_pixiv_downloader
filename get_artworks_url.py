@@ -49,7 +49,7 @@ def get_ranking_artworks_info(item):
 
 
 
-#获取作品基础信息
+#获取tag搜索作品基础信息
 def get_artworks_info(item):
     #遍历result，result是字典类型，通过此方法获取所需的化作信息
     pid = item['id']
@@ -70,12 +70,23 @@ def get_artworks_info(item):
 
 #获取作品的热度信息
 def get_artworks_pop_info(item):
-    time.sleep(1)
     #获取pid，为获取pop_info做准备
     pid = item['id']
     #这是作品详情页的数据，返回json包
     url = f'https://www.pixiv.net/ajax/illust/{pid}'
-    res = requests.get(url,headers=headers)
+    i = 0
+    while i <= 3:
+        try:
+            res = requests.get(url,headers=headers)
+            print(f'本张热度信息获取完成')
+            time.sleep(1)
+            break
+        except Exception as e:
+            print(e)
+            print(f'获取失败，正在重试，剩余次数{2-i}')
+            i += 1
+            time.sleep(1)
+            continue
     #解包json
     result = json.loads(res.text)
     like_count = result['body']['likeCount']
@@ -147,7 +158,15 @@ def get_search_artworks_url():
     while page <= page_limit:
         try:
             url = f'https://www.pixiv.net/ajax/search/illustrations/{s_tags}?word={s_tags}&order={s_order}&mode={s_age_mode}&p={page}&csw=0&s_mode=s_tag&type={s_type}&lang=en'
-            res = requests.get(url,headers=headers)
+            i = 1
+            while i <= 3:
+                try:
+                    res = requests.get(url,headers=headers)
+                    break
+                except BaseException as e:
+                    print(e)
+                    i += 1
+                    continue
             result = json.loads(res.text)
             try:
                 for item in result['body']['illust']['data']:
